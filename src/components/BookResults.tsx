@@ -1,14 +1,40 @@
 import "../styles/BookResults.css";
+import type { Doc } from "../types/BookTypes";
+import { BookCard } from "./BookCard";
 
-function BookResults() {
+
+
+// 1. Define la interfaz de tus propiedades
+interface BookResultsProps {
+  booksdata: Doc[];
+}
+
+// 2. Desestructura las props correctamente usando la interfaz
+function BookResults({ booksdata }: BookResultsProps) { 
   return (
     <section className="book-results" aria-label="Resultados de libros">
       <div className="book-results__header">
         <h2 className="book-results__title">Resultados</h2>
-        <p className="book-results__count">4 libros para “harry potter”</p>
+        
+        <p className="book-results__count">
+          {booksdata?.length || 0} libros”
+        </p> 
       </div>
+      
       <ul className="book-results__grid">
-        <li>
+     
+        {booksdata?.map((book: Doc) => (
+          <BookCard key={book.key} book={book} />
+        ))}
+      </ul>
+    </section>
+  );
+}
+export default BookResults;
+
+
+/* 
+<li>
           <article className="book-card">
             <img
               className="book-card__cover"
@@ -64,9 +90,4 @@ function BookResults() {
             </div>
           </article>
         </li>
-      </ul>
-    </section>
-  );
-}
-
-export default BookResults;
+*/

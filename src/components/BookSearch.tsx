@@ -2,8 +2,17 @@ import "../styles/BookSearch.css";
 import BookResults from "./BookResults";
 import SearchBar from "./SearchBar";
 import SearchHistory from "./SearchHistory";
+import { useBooks } from "../hooks/useBooks";
+import { type Doc } from "../types/BookTypes";
 
 function BookSearch() {
+const result = useBooks("");
+
+if (result && !('props' in result)) {
+  const {books} = result; 
+  
+const sbooks: Doc[] = books.flatMap(book => book.docs);
+
   return (
     <main className="book-search">
       <header className="book-search__header">
@@ -15,9 +24,9 @@ function BookSearch() {
       </header>
       <SearchBar />
       <SearchHistory />
-      <BookResults />
+      <BookResults {...sbooks} />
     </main>
   );
 }
-
+}
 export default BookSearch;

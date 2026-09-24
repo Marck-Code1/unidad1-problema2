@@ -1,6 +1,10 @@
 import "../styles/SearchBar.css";
 
+import { useBooks } from "../hooks/useBooks";
 function SearchBar() {
+
+  const btitle:string = ""
+  useBooks(btitle)
   return (
     <form className="search-bar" action="#" onSubmit={(event) => event.preventDefault()}>
       <label className="search-bar__label" htmlFor="book-query">
@@ -12,8 +16,8 @@ function SearchBar() {
           className="search-bar__input"
           type="search"
           name="q"
-          defaultValue="harry potter"
-          readOnly
+          value={btitle}
+
         />
         <button className="search-bar__button" type="submit">
           Buscar
