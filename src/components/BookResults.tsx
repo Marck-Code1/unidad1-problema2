@@ -10,6 +10,7 @@ interface BookResultsProps {
 }
 
 // 2. Desestructura las props correctamente usando la interfaz
+
 function BookResults({ booksdata }: BookResultsProps) { 
   return (
     <section className="book-results" aria-label="Resultados de libros">
@@ -17,7 +18,7 @@ function BookResults({ booksdata }: BookResultsProps) {
         <h2 className="book-results__title">Resultados</h2>
         
         <p className="book-results__count">
-          {booksdata?.length || 0} libros”
+          {booksdata?.length || 0} libros
         </p> 
       </div>
       

@@ -1,24 +1,33 @@
 import "../styles/SearchBar.css";
 
-import { useBooks } from "../hooks/useBooks";
-function SearchBar() {
+interface SearchBarProps {
+  title: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  onSearch: () => void;
+}
 
-  const btitle:string = ""
-  useBooks(btitle)
+function SearchBar({ title, setTitle, onSearch }: SearchBarProps) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    onSearch();
+  }
+
   return (
-    <form className="search-bar" action="#" onSubmit={(event) => event.preventDefault()}>
+    <form className="search-bar" onSubmit={handleSubmit}>
       <label className="search-bar__label" htmlFor="book-query">
         Buscar libros
       </label>
+
       <div className="search-bar__row">
         <input
           id="book-query"
           className="search-bar__input"
           type="search"
           name="q"
-          value={btitle}
-
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
+
         <button className="search-bar__button" type="submit">
           Buscar
         </button>

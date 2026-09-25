@@ -34,9 +34,5 @@ export interface Doc {
     subtitle?:             string;
 }
 
-enum EbookAccess {
-    Borrowable = "borrowable",
-    NoEbook = "no_ebook",
-    Printdisabled = "printdisabled",
-    Public = "public",
-}
+
+export type EbookAccess = "borrowable" | "no_ebook" | "printdisabled" | "public";
